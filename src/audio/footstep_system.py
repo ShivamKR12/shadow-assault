@@ -65,6 +65,8 @@ class FootstepSystem:
             # Play sound
             sound.volume = volume
             sound.play()
+        else:
+            print(f"Warning: No footstep sounds for surface type '{surface}'")
 
     def detect_surface(self):
         """Detect surface type under player"""

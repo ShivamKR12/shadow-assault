@@ -1,9 +1,15 @@
+import sys
+from pathlib import Path
+
+# Add the parent directory of src to the Python path
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
 from ursina import *
 from src.ui.hud import HUD
 from src.ui.main_menu import MainMenu
 from src.ui.pause_menu import PauseMenu
 from src.effects.particle_system import ParticleSystem
-from src.effects.advanced_particles import AdvancedParticleSystem
+from src.effects.advanced_particle_system import AdvancedParticleSystem
 from src.utils.settings_manager import SettingsManager
 from src.ui.loading_screen import LoadingScreen
 from src.ui.game_over_screen import GameOverScreen

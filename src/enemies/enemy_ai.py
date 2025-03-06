@@ -1,5 +1,6 @@
 from ursina import *
 import random
+import math
 
 class EnemyAI:
     def __init__(self, enemy):
@@ -178,4 +179,37 @@ class EnemyAI:
 
     def find_shooting_position(self, dt):
         if not hasattr(self, 'shooting_position') or \
-           (self.shooting_position - self.enemy.position).length() < 1
+           (self.shooting_position - self.enemy.position).length() < 1:
+            # Generate new shooting position
+            angle = random.uniform(0, math.tau)
+            distance = random.uniform(5, 10)
+            self.shooting_position = self.enemy.position + Vec3(
+                math.cos(angle) * distance,
+                0,
+                math.sin(angle) * distance
+            )
+        
+        # Move towards shooting position
+        direction = (self.shooting_position - self.enemy.position).normalized()
+        self.enemy.position += direction * self.enemy.speed * 0.5 * dt
+        self.enemy.look_at_2d(self.enemy.position + direction)
+
+    def perform_attack(self):
+        # Implement attack logic
+        pass
+
+    def perform_ranged_attack(self):
+        # Implement ranged attack logic
+        pass
+
+    def perform_charge_attack(self):
+        # Implement charge attack logic
+        pass
+
+    def perform_melee_attack(self):
+        # Implement melee attack logic
+        pass
+
+    def perform_slam_attack(self):
+        # Implement slam attack logic
+        pass
