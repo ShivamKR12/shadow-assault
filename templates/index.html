@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ursina Game Stream</title>
+</head>
+<body>
+    <h1>Ursina Game Stream</h1>
+    <img id="gameCanvas" width="800" height="600" style="border:1px solid black;">
+
+    <script>
+        const ws = new WebSocket("ws://localhost:8765");
+        const gameCanvas = document.getElementById("gameCanvas");
+
+        ws.onmessage = function(event) {
+            gameCanvas.src = "data:image/jpeg;base64," + event.data;
+        };
+
+        ws.onopen = function() {
+            console.log("WebSocket connection established.");
+        };
+
+        ws.onerror = function(error) {
+            console.error("WebSocket Error:", error);
+        };
+    </script>
+</body>
+</html>

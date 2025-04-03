@@ -1,9 +1,5 @@
 import sys
 from pathlib import Path
-
-# Add the parent directory of src to the Python path
-sys.path.append(str(Path(__file__).resolve().parent.parent))
-
 from ursina import *
 from src.ui.hud import HUD
 from src.ui.main_menu import MainMenu
@@ -17,7 +13,12 @@ from src.ui.tutorial_system import TutorialSystem
 from src.utils.leaderboard import Leaderboard
 from src.utils.achievement_system import AchievementSystem
 
-class Game(Ursina):
+# Add the parent directory of src to the Python path
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+app = Ursina()
+
+class Game():
     def __init__(self):
         super().__init__()
         self.particle_system = ParticleSystem()
@@ -94,5 +95,4 @@ class Game(Ursina):
         self.game_over_screen.enable()
 
 if __name__ == '__main__':
-    game = Game()
-    game.run()
+    app.run()
