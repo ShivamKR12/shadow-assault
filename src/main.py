@@ -20,7 +20,6 @@ app = Ursina()
 
 class Game():
     def __init__(self):
-        super().__init__()
         self.particle_system = ParticleSystem()
         self.advanced_particle_system = AdvancedParticleSystem()
         self.settings_manager = SettingsManager()
